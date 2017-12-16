@@ -14,7 +14,7 @@ rm -rf ./maltrail
 git clone https://github.com/stamparm/maltrail
 for i in $(ls ./maltrail/trails/static/malware/*.txt)
 do
-	python parse.py $i
+	python ./bin/parse.py $i
 done
 
 rm -rf ./blocklist-ipsets

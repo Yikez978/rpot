@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt-get -y install libssl-dev
+sudo apt -y install libssl-dev
 sudo rm -rf ./clamav-0.99.3-beta1
 tar zxpvf ./clamav-0.99.3-beta1.tar.gz
 cd ./clamav-0.99.3-beta1
