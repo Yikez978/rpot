@@ -19,6 +19,10 @@ sudo cp clamd-response /usr/local/bin/clamd-response
 
 sudo cp ./rules/*.yar /usr/local/share/clamav/ 
 
+sudo mkdir /var/log/clamav
+sudo chown -R root:adm /var/log/clamav
+sudo chmod 2755 /var/log/clamav
+
 sudo ldconfig
 sudo systemctl enable clamd
 sudo systemctl start clamd
