@@ -1,8 +1,12 @@
 ## Real-time Packet Observation Tool (RPOT)
 
 
-
 This build was created and tested using Ubuntu 16.04.
+
+
+### architecture
+![architecture](https://github.com/super-a1ice/rpot/raw/master/screenshot/architecture.png "architecture")
+
 
 ## Startup
 ```
@@ -56,6 +60,7 @@ $ sudo service logstash restart
 ### Visualization
 
 Access Kibana url (``http://localhost:5601``)
+Click [Dashboard] -> [Open] -> [MAIN]
 
 ![screenshot0](https://github.com/super-a1ice/rpot/raw/master/screenshot/screenshot0.png "Hunt Dashboards")
 ![screenshot1](https://github.com/super-a1ice/rpot/raw/master/screenshot/screenshot1.png "Intel")
