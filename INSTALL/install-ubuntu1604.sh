@@ -51,6 +51,16 @@ sudo mv GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
 sudo mkdir -p /opt/kafka && sudo tar -xvf kafka_2.12-1.0.0.tgz -C /opt/kafka
 sudo cp kafka.service /lib/systemd/system/kafka.service
 
+# install suricata
+cd ./suricata/
+./install.sh
+cd ..
+
+# install clamav
+cd ./clamav-install
+./install.sh
+cd ..
+
 # install ELK
 wget https://artifacts.elastic.co/downloads/kibana/kibana-5.0.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
