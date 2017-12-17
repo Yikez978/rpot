@@ -1,5 +1,12 @@
 #!/bin/bash
 INSTALL_USER=$USER
+is_failed() {
+	if [ $? -ne 0 ]; then
+		echo "The command was not successful.";
+		exit 1
+	fi;
+}
+
 sudo git clone http://github.com/super-a1ice/rpot  /opt/rpot
 sudo chown ${INSTALL_USER}:${INSTALL_USER} -R /opt/rpot
 cd /opt/rpot/INSTALL
@@ -12,6 +19,7 @@ sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-
 cd ./bro/
 ./configure
 make -j 4
+is_failed
 sudo make install
 sudo ln -s /usr/local/bro/bin/bro /usr/local/bin
 cd ..
@@ -21,6 +29,7 @@ tar zxpvf librdkafka.tar.gz
 cd librdkafka-0.9.4
 ./configure --enable-sasl
 make -j 4
+is_failed
 sudo make install
 sudo ldconfig
 cd ..
@@ -28,6 +37,7 @@ tar zxpvf metron-bro-plugin-kafka.tar.gz
 cd metron-bro-plugin-kafka
 ./configure --bro-dist=../bro
 make -j 4
+is_failed
 sudo make install
 cd ..
 
@@ -99,6 +109,11 @@ sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
 sudo systemctl enable logstash.service
 sudo systemctl start logstash.service
+
+# wait elasticsearch
+while ! nc -z localhost 9200; do   
+  sleep 0.1
+done
 
 # init database
 cd /opt/rpot
