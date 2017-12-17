@@ -2,13 +2,6 @@
 @load policy/frameworks/intel/do_notice
 @load base/frameworks/intel
 
-hook Notice::policy(n: Notice::Info)
-{
-	local notice_cmd = fmt("notify-send '不審な接続を検知しました。' '接続先: %s'", n$sub);
-	system(notice_cmd);
-}
-
-
 redef Intel::read_files += {
 	"maltrail/trails/static/malware/androm.txt",
 	"maltrail/trails/static/malware/andromem.txt",

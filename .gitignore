@@ -5,6 +5,13 @@ __pycache__/
 # C extensions
 *.so
 
+# install
+INSTALL/bro/
+INSTALL/clamav-install/clamav-0.99.3-beta1/
+INSTALL/librdkafka-0.9.4/
+INSTALL/metron-bro-plugin-kafka/
+INSTALL/suricata/oisf/
+
 # Distribution / packaging
 .Python
 env/
@@ -30,6 +37,8 @@ maltrail
 backup_bro.json.gz
 backup_suricata.json.gz
 backup_clamd.json.gz
+extract_files
+!extract_files/empty
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
