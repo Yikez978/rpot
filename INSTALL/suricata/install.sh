@@ -11,6 +11,7 @@ sudo make install-full
 sudo ldconfig
 cd ..
 
+sudo mkdir -p /var/log/suricata/
 sudo cp suricata.yaml /usr/local/etc/suricata/suricata.yaml
 sudo cp oinkmaster.conf /etc/oinkmaster.conf
 sudo cp suricata.service /lib/systemd/system/suricata.service
