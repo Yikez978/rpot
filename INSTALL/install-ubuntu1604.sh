@@ -73,6 +73,11 @@ cd ./clamav-install
 ./install.sh
 cd ..
 
+# install suricata
+cd ./suricata
+./install.sh
+cd ..
+
 # install ELK
 wget https://artifacts.elastic.co/downloads/kibana/kibana-5.0.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
@@ -85,18 +90,13 @@ sudo cp logstash-clamav-es.conf /etc/logstash/conf.d/
 sudo /usr/share/logstash/bin/logstash-plugin install logstash-output-exec
 
 # install node elasticdump
-sudo apt-get install nodejs npm
+sudo apt -y install nodejs npm
 sudo npm cache clean
 sudo npm install n -g
 sudo n stable
 sudo ln -sf /usr/local/bin/node /usr/bin/node
 sudo apt-get purge -y nodejs npm
 sudo npm install elasticdump -g
-
-# install suricata
-cd ./suricata
-./install.sh
-cd ..
 
 # register and start service
 sudo systemctl enable zookeeper
