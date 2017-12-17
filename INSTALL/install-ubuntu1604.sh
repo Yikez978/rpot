@@ -3,6 +3,8 @@ INSTALL_USER=$USER
 sudo git clone http://github.com/super-a1ice/rpot  /opt/rpot
 sudo chown ${INSTALL_USER}:${INSTALL_USER} -R /opt/rpot
 cd /opt/rpot/INSTALL
+sudo mkdir -p /opt/rpot/extract_files/
+sudo chmod 777 /opt/rpot/extract_files/
 
 # install bro
 tar zxpvf ./bro.tar.gz
@@ -12,7 +14,7 @@ cd ./bro/
 make -j 4
 sudo make install
 sudo ln -s /usr/local/bro/bin/bro /usr/local/bin
-sudo mkdir -p /opt/bro/extract_files/
+cd ..
 
 # install bro kafka plugin
 tar zxpvf librdkafka.tar.gz
