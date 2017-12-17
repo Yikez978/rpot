@@ -3,10 +3,13 @@
 # update geoip
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz
+wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
 gzip -d GeoLiteCity.dat.gz
+gzip -d GeoIPASNum.dat.gz
 gzip -d GeoLiteCityv6.dat.gz
 
 sudo mv GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
+sudo mv GeoIPASNum.dat /usr/share/GeoIP/GeoIPASNum.dat
 sudo mv GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
 
 # update feed

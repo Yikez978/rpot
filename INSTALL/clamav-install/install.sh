@@ -9,7 +9,6 @@ sudo make install
 cd ..
 
 sudo mkdir -p /usr/local/share/clamav
-sudo mkdir -p /data/malware
 
 sudo cp *.cvd /usr/local/share/clamav/
 sudo cp clamd.service /lib/systemd/system/clamd.service

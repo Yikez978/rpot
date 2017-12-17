@@ -27,13 +27,22 @@ make -j 4
 sudo make install
 cd ..
 
+# create malware mgmt directory
+sudo mkdir -p /data/malware
+sudo chmod 777 /data/malware
+
 # update geoip database
+
+# update geoip
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz
+wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
 gzip -d GeoLiteCity.dat.gz
+gzip -d GeoIPASNum.dat.gz
 gzip -d GeoLiteCityv6.dat.gz
-mv GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
-mv GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
+sudo mv GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
+sudo mv GeoIPASNum.dat /usr/share/GeoIP/GeoIPASNum.dat
+sudo mv GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat
 
 
 # install kafka service
@@ -49,6 +58,16 @@ sudo usermod -a -G adm logstash
 sudo cp logstash-kafka-bro.conf /etc/logstash/conf.d
 sudo cp logstash-suricata-es.conf /etc/logstash/conf.d
 sudo cp logstash-clamav-es.conf /etc/logstash/conf.d/
+sudo /usr/share/logstash/bin/logstash-plugin install logstash-output-exec
+
+# install node elasticdump
+sudo apt-get install nodejs npm
+sudo npm cache clean
+sudo npm install n -g
+sudo n stable
+sudo ln -sf /usr/local/bin/node /usr/bin/node
+sudo apt-get purge -y nodejs npm
+sudo npm install elasticdump -g
 
 # install suricata
 cd ./suricata
