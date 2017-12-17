@@ -30,4 +30,4 @@ do
 	python ./bin/parse.py $i
 done
 
-sudo oinkmaster -C /etc/oinkmaster.conf -o /usr/local/etc/suricata/rules
+#sudo oinkmaster -C /etc/oinkmaster.conf -o /usr/local/etc/suricata/rules
