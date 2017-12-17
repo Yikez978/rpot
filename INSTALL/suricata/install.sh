@@ -7,10 +7,11 @@ tar zxpvf oisf.tar.gz
 cd oisf
 ./configure
 make -j 4
-sudo make install
+sudo make install-full
 sudo ldconfig
 cd ..
 
+sudo cp suricata.yaml /usr/local/etc/suricata/suricata.yaml
 sudo cp oinkmaster.conf /etc/oinkmaster.conf
 sudo cp suricata.service /lib/systemd/system/suricata.service
 sudo systemctl enable suricata.service

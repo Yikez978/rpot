@@ -10,7 +10,6 @@ cd ..
 
 sudo mkdir -p /usr/local/share/clamav
 
-sudo cp *.cvd /usr/local/share/clamav/
 sudo cp clamd.service /lib/systemd/system/clamd.service
 sudo cp clamd.conf /usr/local/etc/clamd.conf
 sudo cp clamav-update /usr/local/bin/
