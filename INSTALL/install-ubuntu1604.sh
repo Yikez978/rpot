@@ -2,6 +2,8 @@
 INSTALL_USER=$USER
 sudo git clone http://github.com/super-a1ice/rpot  /opt/rpot
 sudo chown ${INSTALL_USER}:${INSTALL_USER} -R /opt/rpot
+cd /opt/rpot/INSTALL
+
 # install bro
 tar zxpvf ./bro.tar.gz
 sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libgeoip-dev zookeeperd autoconf
