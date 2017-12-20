@@ -6,6 +6,14 @@ is_failed() {
 		exit 1
 	fi;
 }
+# Java install
+sudo apt -y update
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt -y update
+sudo apt -y install oracle-java8-installer
+
+# upgrade
+sudo apt -y upgrade
 
 sudo git clone http://github.com/super-a1ice/rpot  /opt/rpot
 sudo chown ${INSTALL_USER}:${INSTALL_USER} -R /opt/rpot
