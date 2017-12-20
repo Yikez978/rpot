@@ -86,6 +86,15 @@ cd ./suricata
 ./install.sh
 cd ..
 
+# install node elasticdump
+sudo apt -y install nodejs npm
+sudo npm cache clean
+sudo npm install n -g
+sudo n stable
+sudo ln -sf /usr/local/bin/node /usr/bin/node
+sudo apt-get purge -y nodejs npm
+sudo npm install elasticdump -g
+
 # install ELK
 wget https://artifacts.elastic.co/downloads/kibana/kibana-5.0.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
@@ -95,16 +104,9 @@ sudo usermod -a -G adm logstash
 sudo cp logstash-kafka-bro.conf /etc/logstash/conf.d
 sudo cp logstash-suricata-es.conf /etc/logstash/conf.d
 sudo cp logstash-clamav-es.conf /etc/logstash/conf.d/
-sudo /usr/share/logstash/bin/logstash-plugin install logstash-output-exec
 
-# install node elasticdump
-sudo apt -y install nodejs npm
-sudo npm cache clean
-sudo npm install n -g
-sudo n stable
-sudo ln -sf /usr/local/bin/node /usr/bin/node
-sudo apt-get purge -y nodejs npm
-sudo npm install elasticdump -g
+# install logstash plugin
+sudo /usr/share/logstash/bin/logstash-plugin install logstash-output-exec
 
 # register and start service
 sudo systemctl enable zookeeper
@@ -122,6 +124,28 @@ sudo systemctl start logstash.service
 while ! nc -z localhost 9200; do   
   sleep 0.1
 done
+
+# install x-pack
+echo 'Install x-pack?'
+echo 'You need register license (https://register.elastic.co/registration/)'
+echo -n '[y/N]'
+read xpack
+
+case $xpack in
+	y)
+		echo -n 'license json file path: '
+		read $license_file
+		echo y | sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install x-pack
+		sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install x-pack
+		echo 'xpack.security.enabled: false' | sudo tee -a /etc/elasticsearch/elasticsearch.yml
+		curl -XPUT -u elastic:changeme 'http://localhost:9200/_xpack/license?acknowledge=true' -H "Content-Type: application/json" -d @${license_file}
+		sudo service elasticsearch restart
+		sudo service kibana restart
+		;;
+	*)
+		echo -e "x-pack not installed."
+		;;
+esac
 
 # init database
 cd /opt/rpot
