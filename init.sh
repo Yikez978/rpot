@@ -10,3 +10,4 @@ curl -XPUT 'http://localhost:9200/_template/bro_index' -d @mapping.json
 sudo rm /usr/local/var/log/suricata/eve.json
 sudo service suricata start
 sudo service logstash start
+curl 'localhost:9200/_cat/indices?v'

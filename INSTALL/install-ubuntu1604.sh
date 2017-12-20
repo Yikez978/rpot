@@ -54,8 +54,6 @@ sudo mkdir -p /data/malware
 sudo chmod 777 /data/malware
 
 # update geoip database
-
-# update geoip
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz
 wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
@@ -95,6 +93,14 @@ sudo ln -sf /usr/local/bin/node /usr/bin/node
 sudo apt-get purge -y nodejs npm
 sudo npm install elasticdump -g
 
+# install PasteHunter
+sudo git clone https://github.com/vishnubob/wait-for-it /opt/wait-for-it
+sudo git clone https://github.com/kevthehermit/PasteHunter /opt/PasteHunter
+sudo chown -R ${INSTALL_USER}:${INSTALL_USER} /opt/PasteHunter
+sudo cp pastehunter.service /lib/systemd/system/pastehunter.service
+sudo systemctl enable pastehunter.service
+sudo systemctl start pastehunter.service
+
 # install ELK
 wget https://artifacts.elastic.co/downloads/kibana/kibana-5.0.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
@@ -105,7 +111,8 @@ sudo cp logstash-kafka-bro.conf /etc/logstash/conf.d
 sudo cp logstash-suricata-es.conf /etc/logstash/conf.d
 sudo cp logstash-clamav-es.conf /etc/logstash/conf.d/
 
-# install logstash plugin
+# install logstash plugins
+sudo /usr/share/logstash/bin/logstash-plugin install logstash-input-twitter
 sudo /usr/share/logstash/bin/logstash-plugin install logstash-output-exec
 
 # register and start service
