@@ -23,7 +23,7 @@ sudo chmod 777 /opt/rpot/extract_files/
 
 # install bro
 tar zxpvf ./bro.tar.gz
-sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libgeoip-dev zookeeperd autoconf
+sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libgeoip-dev zookeeperd autoconf python-pip
 cd ./bro/
 ./configure
 make -j 4

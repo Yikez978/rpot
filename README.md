@@ -57,6 +57,15 @@ $ sudo cp logstash-clamav-es.conf /etc/logstash/conf.d/
 $ sudo service logstash restart
 ```
 
+### Observe Twitter feed
+Follow analysts
+https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/twitter/analysts.txt
+and configure logstash.
+```
+$ sudo pip install -r https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/twitter/requirements.txt
+$ python generate.py CONSUMER_KEY CONSUMER_SECRET OAUTH_TOKEN OAUTH_TOKEN_SECRET | sudo tee /etc/logstash/conf.d/logstash-twitter.conf
+```
+
 ### Visualization
 
 Access Kibana url (``http://localhost:5601``)
