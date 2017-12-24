@@ -1,8 +1,8 @@
 from tweepy import *
 import sys
 
-if len(sys.argv) != 4:
-    print('%s <consumer_key> <consumer_secret> <oauth_token> <oauth_token_secret>' % sys.argv[0])
+if len(sys.argv) != 7:
+    print('%s <consumer_key> <consumer_secret> <oauth_token> <oauth_token_secret> <owner_screen_name> <list_name>' % sys.argv[0])
     sys.exit(1)
 
 
@@ -10,6 +10,8 @@ consumer_key = sys.argv[1]
 consumer_secret = sys.argv[2]
 oauth_token = sys.argv[3]
 oauth_token_secret = sys.argv[4]
+owner_screen_name = sys.argv[5]
+list_name = sys.argv[6]
 
 logstash_conf_input = '''input { 
     twitter {
@@ -19,6 +21,7 @@ logstash_conf_input = '''input {
         oauth_token_secret => "%s"
         follows => ["%s"]
         type => stream
+        add_field => {"list" => "%s"}
     }
 } 
 '''
@@ -64,9 +67,9 @@ auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(oauth_token, oauth_token_secret)
 api = API(auth)
 follower_ids = []
-for follower in Cursor(api.friends).items():
-    follower_ids.append(follower.id_str)
+for member in Cursor(api.list_members,slug=list_name, owner_screen_name=owner_screen_name).items():
+    follower_ids.append(member.id_str)
 
-print(logstash_conf_input % (consumer_key, consumer_secret, oauth_token, oauth_token_secret, '","'.join(follower_ids)))
+print(logstash_conf_input % (consumer_key, consumer_secret, oauth_token, oauth_token_secret, '","'.join(follower_ids), list_name))
 print(logstash_conf_filter)
 print(logstash_conf_output)
