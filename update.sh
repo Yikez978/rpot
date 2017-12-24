@@ -30,4 +30,4 @@ do
 	python ./bin/parse.py $i
 done
 
-#sudo oinkmaster -C /etc/oinkmaster.conf -o /usr/local/etc/suricata/rules
+sudo wget -qO - https://rules.emergingthreats.net/open/suricata-4.0/emerging.rules.tar.gz | sudo tar -x -z --exclude suricata.yaml -C "/usr/local/etc/suricata/" -f -

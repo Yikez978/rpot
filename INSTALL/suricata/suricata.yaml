@@ -47,9 +47,9 @@ vars:
 ## Step 2: select the rules to enable or disable
 ##
 
-default-rule-path: /etc/suricata/rules
+default-rule-path: /usr/local/etc/suricata/rules/
 rule-files:
- - pulledpork.rules      # Default file dropped by pulledpork in rules dir
+# - pulledpork.rules      # Default file dropped by pulledpork in rules dir
 # - decoder-events.rules # available in suricata sources under rules dir
 # - stream-events.rules  # available in suricata sources under rules dir
  - http-events.rules    # available in suricata sources under rules dir
@@ -58,11 +58,11 @@ rule-files:
  - tls-events.rules     # available in suricata sources under rules dir
  #- modbus-events.rules  # available in suricata sources under rules dir
  - app-layer-events.rules  # available in suricata sources under rules dir
- - files.rules             # available in suricata sources under rules dir
+   # - files.rules             # available in suricata sources under rules dir
 
-classification-file: /etc/suricata/classification.config
-reference-config-file: /etc/suricata/reference.config
-# threshold-file: /etc/suricata/threshold.config
+classification-file: /usr/local/etc/suricata/classification.config
+reference-config-file: /usr/local/etc/suricata/reference.config
+# threshold-file: /usr/local/etc/suricata/threshold.config
 
 
 ##
@@ -401,7 +401,7 @@ outputs:
   # https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Lua_Output
   - lua:
       enabled: no
-      #scripts-dir: /etc/suricata/lua-output/
+      #scripts-dir: /usr/local/etc/suricata/lua-output/
       scripts:
       #   - script1.lua
 
@@ -901,8 +901,8 @@ legacy:
 #   - alert
 
 # IP Reputation
-#reputation-categories-file: /etc/suricata/iprep/categories.txt
-#default-reputation-path: /etc/suricata/iprep
+#reputation-categories-file: /usr/local/etc/suricata/iprep/categories.txt
+#default-reputation-path: /usr/local/etc/suricata/iprep
 #reputation-files:
 # - reputation.list
 
