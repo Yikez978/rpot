@@ -31,7 +31,7 @@ sudo chmod 777 /opt/rpot/extract_files/
 
 # install bro
 tar zxpvf ./bro.tar.gz
-sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libgeoip-dev zookeeperd autoconf python-pip
+sudo apt -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libgeoip-dev zookeeperd autoconf python-pip python3-pip
 cd ./bro/
 ./configure
 make -j 4
@@ -112,7 +112,7 @@ sudo make install
 cd ..
 
 # install PasteHunter
-sudo pip install yara-python
+sudo pip3 install yara-python
 sudo git clone https://github.com/vishnubob/wait-for-it /opt/wait-for-it
 sudo git clone https://github.com/kevthehermit/PasteHunter /opt/PasteHunter
 sudo chown -R ${INSTALL_USER}:${INSTALL_USER} /opt/PasteHunter
