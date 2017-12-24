@@ -6,10 +6,18 @@ is_failed() {
 		exit 1
 	fi;
 }
+# ask install x-pack
+echo 'Install x-pack?'
+echo 'You need register license (https://register.elastic.co/registration/)'
+echo -n '[y/N]'
+read xpack
+
 # Java install
 sudo apt -y update
 sudo add-apt-repository ppa:webupd8team/java -y
 sudo apt -y update
+echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
 sudo apt -y install oracle-java8-installer
 
 # upgrade
@@ -145,11 +153,6 @@ while ! nc -z localhost 9200; do
 done
 
 # install x-pack
-echo 'Install x-pack?'
-echo 'You need register license (https://register.elastic.co/registration/)'
-echo -n '[y/N]'
-read xpack
-
 case $xpack in
 	y)
 		echo -n 'license json file path: '
