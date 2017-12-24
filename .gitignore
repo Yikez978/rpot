@@ -37,6 +37,9 @@ maltrail
 backup_bro.json.gz
 backup_suricata.json.gz
 backup_clamd.json.gz
+backup_paste.json.gz
+backup_twitter.json.gz
+
 extract_files
 !extract_files/empty
 

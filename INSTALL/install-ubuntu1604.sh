@@ -112,11 +112,11 @@ sudo make install
 cd ..
 
 # install PasteHunter
-sudo pip3 install yara-python
 sudo git clone https://github.com/vishnubob/wait-for-it /opt/wait-for-it
 sudo git clone https://github.com/kevthehermit/PasteHunter /opt/PasteHunter
 sudo chown -R ${INSTALL_USER}:${INSTALL_USER} /opt/PasteHunter
 sudo pip3 install -r /opt/PasteHunter/requirements.txt
+cp /opt/PasteHunter/settings.json.sample /opt/PasteHunter/settings.json
 sudo cp pastehunter.service /lib/systemd/system/pastehunter.service
 sudo systemctl enable pastehunter.service
 sudo systemctl start pastehunter.service
