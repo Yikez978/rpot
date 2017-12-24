@@ -10,7 +10,8 @@ This build was created and tested using Ubuntu 16.04.
 
 ## Startup
 ```
-$ curl -sL https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/install-ubuntu1604.sh | bash
+$ wget https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/install-ubuntu1604.sh 
+$ bash ./install-ubuntu1604.sh
 ```
 
 ## Usage
