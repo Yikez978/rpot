@@ -64,7 +64,7 @@ https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/twitter/analys
 and configure logstash.
 ```
 $ sudo pip install -r https://raw.githubusercontent.com/super-a1ice/rpot/master/INSTALL/twitter/requirements.txt
-$ python generate.py CONSUMER_KEY CONSUMER_SECRET OAUTH_TOKEN OAUTH_TOKEN_SECRET | sudo tee /etc/logstash/conf.d/logstash-twitter.conf
+$ python generate.py CONSUMER_KEY CONSUMER_SECRET OAUTH_TOKEN OAUTH_TOKEN_SECRET OWNER_SCREEN_NAME LIST_NAME | sudo tee /etc/logstash/conf.d/logstash-twitter.conf
 ```
 
 ### Visualization
