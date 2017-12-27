@@ -30,4 +30,8 @@ do
 	python ./bin/parse.py $i
 done
 
+# update intel script
+python bin/intel.py 'maltrail/trails/static/malware/*.txt,blocklist-ipsets/*.ipset' > config/intelligence.bro
+
+
 sudo wget -qO - https://rules.emergingthreats.net/open/suricata-4.0/emerging.rules.tar.gz | sudo tar -x -z --exclude suricata.yaml -C "/usr/local/etc/suricata/" -f -
